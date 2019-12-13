@@ -1,10 +1,9 @@
-s = input('Evaluate me! : ')
-endpoint = 'https://translation.googleapis.com'
-
 ops = {
     'plus': '+',
     'minus': '-',
     'gange': '*',
+    'divideret': '/',
+    'med': '', # it comes as divided "BY", so med is by
 }
 
 danish_nums = {
@@ -113,12 +112,14 @@ danish_nums = {
 def num_to_word(n):
     return [key for key, value in danish_nums.items() if value == n][0]
 
-e = ''
+while True:
+    s = input('Evaluate me! : ')
+    e = ''
 
-for word in s.split(' '):
-    if word in ops:
-        e += ops[word]
-    else:
-        e += str(danish_nums[word])
+    for word in s.replace('?', '').split(' '):
+        if word in ops:
+            e += ops[word]
+        else:
+            e += str(danish_nums[word])
 
-print(num_to_word(eval(e)))
+    print(num_to_word(eval(e)))
